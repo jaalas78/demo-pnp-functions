@@ -39,23 +39,11 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
  
-    var jsonToReturn = JsonConvert.SerializeObject(results);
+    var jsonToReturn = JsonConvert.SerializeObject(results);   
 
-    // parse query parameter
-    string name = req.GetQueryNameValuePairs()
-        .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
-        .Value;
-
-    if (name == null)
+    if(jsonToReturn == null)
     {
-        // Get request body
-        dynamic data = await req.Content.ReadAsAsync<object>();
-        name = data?.name;
-    }
-
-    if(name == null)
-    {
-        return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+        return req.CreateResponse(HttpStatusCode.BadRequest, "Failed to parse json.")
     }
     else{
          return new HttpResponseMessage(HttpStatusCode.OK) {
