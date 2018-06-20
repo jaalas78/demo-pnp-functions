@@ -39,8 +39,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
  
-    //var jsonToReturn = JsonConvert.SerializeObject(results);   
-    var jsonToReturn = "Success";
+    var jsonToReturn = JsonConvert.SerializeObject(results);   
+    //var jsonToReturn = "Success";
 
     if(jsonToReturn == null)
     {
