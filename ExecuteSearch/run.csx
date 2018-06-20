@@ -44,12 +44,12 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     if(jsonToReturn == null)
     {
-        return req.CreateResponse(HttpStatusCode.BadRequest, "Failed to parse json.")
+        return req.CreateResponse(HttpStatusCode.BadRequest, "Failed to parse json.");
     }
     else{
         
          return new HttpResponseMessage(HttpStatusCode.OK) {
-          Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+          Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json");
         };
     }
         
