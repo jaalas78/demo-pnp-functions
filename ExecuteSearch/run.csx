@@ -1,3 +1,4 @@
+#r Microsoft.SharePoint.Client.Search;
 using System;
 using System.Net;
 using Newtonsoft.Json;
@@ -31,11 +32,11 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     log.Info($"Successfully authenticated to site {siteContext.Url}..");
 
-    /*KeywordQuery keywordQuery = new KeywordQuery(siteContext);
+    KeywordQuery keywordQuery = new KeywordQuery(siteContext);
     keywordQuery.QueryText = "SharePoint";
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
-    siteContext.ExecuteQuery();*/
+    siteContext.ExecuteQuery();
 
     // parse query parameter
     string name = req.GetQueryNameValuePairs()
