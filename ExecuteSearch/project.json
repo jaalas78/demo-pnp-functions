@@ -1,0 +1,11 @@
+{
+    "frameworks": {
+      "net46":{
+        "dependencies": {
+          "SharePointPnPCoreOnline": "2.14.1704",
+          "Microsoft.IdentityModel.Clients.ActiveDirectory" : "3.13.7",
+          "Microsoft.SharePointOnline.CSOM": "16.1.5813.1200"
+        }
+      }
+     }
+  }
