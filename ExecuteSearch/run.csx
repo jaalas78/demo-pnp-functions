@@ -49,7 +49,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     else{
         
          return new HttpResponseMessage(HttpStatusCode.OK) {
-          Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json");
+          Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
         };
     }
         
