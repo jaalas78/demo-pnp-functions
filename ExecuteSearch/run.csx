@@ -39,13 +39,14 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
  
-    var jsonToReturn = JsonConvert.SerializeObject(results);   
+    //var jsonToReturn = JsonConvert.SerializeObject(results);   
 
     if(jsonToReturn == null)
     {
         return req.CreateResponse(HttpStatusCode.BadRequest, "Failed to parse json.")
     }
     else{
+        var jsonToReturn = "Success";
          return new HttpResponseMessage(HttpStatusCode.OK) {
           Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
         };
