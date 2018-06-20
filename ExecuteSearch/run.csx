@@ -14,7 +14,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     string ADMIN_PASSWORD_CONFIG_KEY = "SharePointUserPwd";
     string adminUserName = System.Environment.GetEnvironmentVariable(ADMIN_USER_CONFIG_KEY, EnvironmentVariableTarget.Process);
     string adminPassword = System.Environment.GetEnvironmentVariable(ADMIN_PASSWORD_CONFIG_KEY, EnvironmentVariableTarget.Process); 
-
+    //
+    
     // collect site/page details from request body..
     dynamic dataX = await req.Content.ReadAsAsync<object>();
     string siteUrl = dataX.SiteUrl;
