@@ -1,6 +1,7 @@
 #r "Newtonsoft.Json"
 using System;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Pages;
@@ -41,7 +42,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
  
     //var jsonToReturn = JsonConvert.SerializeObject(results);   
     var jsonToReturn = "Success";
-    
+
     if(jsonToReturn == null)
     {
         return req.CreateResponse(HttpStatusCode.BadRequest, "Failed to parse json.")
