@@ -5,7 +5,7 @@ using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Pages;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.SharePoint.Client;
-using Microsoft.SharePoint.Client.Search;
+using Microsoft.SharePoint.Client.Search.Query;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -31,10 +31,10 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     log.Info($"Successfully authenticated to site {siteContext.Url}..");
 
-    Microsoft.SharePoint.Client.Search.Query.KeywordQuery keywordQuery = new Microsoft.SharePoint.Client.Search.Query.KeywordQuery(siteContext);
+    KeywordQuery keywordQuery = new KeywordQuery(siteContext);
     keywordQuery.QueryText = "SharePoint";
-    Microsoft.SharePoint.Client.Search.Query.SearchExecutor searchExecutor = new Microsoft.SharePoint.Client.Search.Query.SearchExecutor(siteContext);
-    Microsoft.SharePoint.Client.ClientResult<Microsoft.SharePoint.Client.Search.Query.ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
+    SearchExecutor searchExecutor = new SearchExecutor(siteContext);
+    ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
 
     // parse query parameter
