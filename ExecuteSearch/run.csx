@@ -1,3 +1,4 @@
+#r "Newtonsoft.Json"
 using System;
 using System.Net;
 using Newtonsoft.Json;
@@ -6,6 +7,7 @@ using OfficeDevPnP.Core.Pages;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Search.Query;
+using Newtonsoft.Json;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -36,6 +38,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
+ 
+    var jsonToReturn = JsonConvert.SerializeObject(results);
 
     // parse query parameter
     string name = req.GetQueryNameValuePairs()
@@ -49,7 +53,14 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
         name = data?.name;
     }
 
-    return name == null
-        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-        : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
+    if(name == null)
+    {
+        return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+    }
+    else{
+         return new HttpResponseMessage(HttpStatusCode.OK) {
+          Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
+        };
+    }
+        
 }
