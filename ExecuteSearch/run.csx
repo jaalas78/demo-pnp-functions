@@ -34,7 +34,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     log.Info($"Successfully authenticated to site {siteContext.Url}..");
 
     KeywordQuery keywordQuery = new KeywordQuery(siteContext);
-    keywordQuery.QueryText = "SharePoint";
+    keywordQuery.QueryText = "dev";
+    keywordQuery.SourceId = "b09a7990-05ea-4af9-81ef-edfab16c4e31";
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
     siteContext.ExecuteQuery();
