@@ -23,7 +23,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     string siteUrl = dataX.SiteUrl;
     string queryText = dataX.QueryText;
     int maxItems = 1;
-    if(dataX.MaxItems!==null)
+    if(dataX.MaxItems!=null)
     {
         maxItems = dataX.MaxItems;   
     }
