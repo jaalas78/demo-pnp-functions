@@ -22,6 +22,11 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     dynamic dataX = await req.Content.ReadAsAsync<object>();
     string siteUrl = dataX.SiteUrl;
     string queryText = dataX.QueryText;
+    int maxItems = dataX.MaxItems;
+    if(maxItems==0)
+    {
+        maxItems = 1;   
+    }
     log.Info($"Received siteUrl={siteUrl}");
 
     log.Info($"Will attempt to authenticate to SharePoint with username {adminUserName}");
@@ -36,6 +41,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     KeywordQuery keywordQuery = new KeywordQuery(siteContext);
     keywordQuery.QueryText = queryText;
+    keywordQuery.set_rowLimit(maxItems);
     keywordQuery.SourceId = new Guid("b09a7990-05ea-4af9-81ef-edfab16c4e31");
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
