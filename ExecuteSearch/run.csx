@@ -22,10 +22,10 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     dynamic dataX = await req.Content.ReadAsAsync<object>();
     string siteUrl = dataX.SiteUrl;
     string queryText = dataX.QueryText;
-    int maxItems = dataX.MaxItems;
-    if(maxItems==0)
+    int maxItems = 1;
+    if(dataX.MaxItems!==null)
     {
-        maxItems = 1;   
+        maxItems = dataX.MaxItems;   
     }
     log.Info($"Received siteUrl={siteUrl}");
 
