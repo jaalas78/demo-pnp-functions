@@ -29,7 +29,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     }
     
     log.Info($"Received siteUrl={siteUrl}");
-    log.Info($"Using keyword {queryText} for the search");
+    log.Info($"Using keyword '{queryText}' for the search");
 
     log.Info($"Will attempt to authenticate to SharePoint with username {adminUserName}");
 
