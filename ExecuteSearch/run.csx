@@ -46,6 +46,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     keywordQuery.RowLimit = maxItems;
     keywordQuery.SelectProperties.Add("Title");
     keywordQuery.SelectProperties.Add("PictureUrl");
+    keywordQuery.SelectProperties.Add("SipAddress");
     keywordQuery.SourceId = new Guid("b09a7990-05ea-4af9-81ef-edfab16c4e31");
     keywordQuery.RankingModelId = "D9BFB1A1-9036-4627-83B2-BBD9983AC8A1";
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
