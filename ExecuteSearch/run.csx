@@ -21,6 +21,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     // collect site/page details from request body..
     dynamic dataX = await req.Content.ReadAsAsync<object>();
     string siteUrl = dataX.SiteUrl;
+    string queryText = dataX.QueryText;
     log.Info($"Received siteUrl={siteUrl}");
 
     log.Info($"Will attempt to authenticate to SharePoint with username {adminUserName}");
@@ -34,7 +35,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     log.Info($"Successfully authenticated to site {siteContext.Url}..");
 
     KeywordQuery keywordQuery = new KeywordQuery(siteContext);
-    keywordQuery.QueryText = "dev";
+    keywordQuery.QueryText = queryText;
     keywordQuery.SourceId = new Guid("b09a7990-05ea-4af9-81ef-edfab16c4e31");
     SearchExecutor searchExecutor = new SearchExecutor(siteContext);
     ClientResult<ResultTableCollection> results = searchExecutor.ExecuteQuery(keywordQuery);
