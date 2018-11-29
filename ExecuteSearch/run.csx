@@ -3,6 +3,7 @@ using System;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using Microsoft.Azure.WebJobs;
 using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Pages;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
