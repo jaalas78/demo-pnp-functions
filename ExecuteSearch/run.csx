@@ -1,9 +1,12 @@
 #r "Newtonsoft.Json"
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
 using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Pages;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
