@@ -1,19 +1,15 @@
 #r "Newtonsoft.Json"
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
 using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Pages;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Search.Query;
 
-public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info("C# HTTP trigger function processed a request.");
     string ADMIN_USER_CONFIG_KEY = "SharePointUser";
